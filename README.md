@@ -1,2 +1,2 @@
 # Dandelion-seeds
-민들레 홀씨 프로젝트
+![Alt Text](https://github.com/JUNGHOJONG/Dandelion-seeds/blob/main/data/Dandelion_project.gif?raw=true)
