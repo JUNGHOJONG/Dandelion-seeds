@@ -1,38 +1,36 @@
 class Lawn {
 
-  float theta;
-  float thetaSpeed;
-  color c;
+  private static final float CHANGE_SPEED = 0.05;
+  private final color COLOR = color(225);
+  private final float STROKE_WEIGHT = 1.2;
 
-  Lawn() {
-
-    theta=0;
-    thetaSpeed=0.05;
-    c= color(200);
-  }
+  private float heightChange = 0;
+  private boolean check = true;
 
   void display() {
-
-    float x= theta;////////////lawn
-
-    for (float i=0; i<width; i=i+0.1) {
-
-      float y=-noise(x)*15+height;
-
-      //noStroke();
-      strokeWeight(0.3);
-      //fill(c);
-      point(i, y);
-      for (float j=y+1; j<height; j=j+0.1) {
-
-        point(i, j);
+    float change = heightChange;
+    for (float j=0; j<width; j+=1) {
+      float y = -noise(change) * 15 + height;
+      stroke(COLOR);
+      strokeWeight(STROKE_WEIGHT);
+      point(j, y);
+      for (float i=y+1; i<height; i+=1) {
+        point(j, i);
       }
-      x+=0.5;
+      change += 0.5;
     }
   }
 
-  void update() {
-
-    theta+=thetaSpeed;
+  void updateHeightChange() {
+    if (heightChange < 1 && check) {
+      heightChange += CHANGE_SPEED;
+      return;
+    }
+    check = false;
+    if (heightChange > 0 && !check) {
+      heightChange -= CHANGE_SPEED;
+      return;
+    }
+    check = true;
   }
 }
